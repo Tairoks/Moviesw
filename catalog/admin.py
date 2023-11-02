@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.utils.safestring import mark_safe
-from.models import Category, Genre, Screenshot, Movie, Director
+from.models import Category, Genre, Screenshot, Movie, Director, Actor
 
 # Register your models here.
 
@@ -46,6 +46,11 @@ class MovieAdmin(admin.ModelAdmin):
         return mark_safe(f'<img src={obj.poster.url} width="100" height"110">')
 
     get_image.short_description = "Poster"
+
+
+@admin.register(Actor)
+class ActorAdmin(admin.ModelAdmin):
+    list_display = ("first_name", 'last_name',)
 
 
 admin.site.register(Director)
