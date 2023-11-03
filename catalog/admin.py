@@ -51,6 +51,11 @@ class MovieAdmin(admin.ModelAdmin):
 @admin.register(Actor)
 class ActorAdmin(admin.ModelAdmin):
     list_display = ("first_name", 'last_name',)
+    readonly_fields = ('get_image',)
+    prepopulated_fields = {'slug': ("first_name", 'last_name',)}
+
+    def get_image(self, obj):
+        return mark_safe(f'<img src={obj.photo.url} width="100" height="110">')
 
 
 admin.site.register(Director)

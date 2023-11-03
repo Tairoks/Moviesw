@@ -54,7 +54,7 @@ class Movie(models.Model):
     category = models.ForeignKey(Category, on_delete=models.CASCADE, related_name='category')
     description = models.TextField(verbose_name='Description', null=True, blank=True)
     year = models.PositiveSmallIntegerField(verbose_name='Year of production')
-    poster = models.ImageField("Poster", default="poster.png", upload_to='movies/')
+    poster = models.ImageField("Poster", default="default.png", upload_to='movies/')
     actors = models.ManyToManyField(Actor, related_name="movie_actor")
     budget = models.PositiveIntegerField(verbose_name='Budget', default=0, help_text="million on US dollars")
     genre = models.ManyToManyField(Genre, verbose_name='Genres')
