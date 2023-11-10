@@ -1,5 +1,6 @@
 from django.shortcuts import render, HttpResponse, redirect
 from django.http import HttpResponseNotFound
+from catalog.models import Movie
 
 # Create your views here.
 CATEGORIES = (
@@ -10,15 +11,15 @@ CATEGORIES = (
 
 
 def index(request):
-    return HttpResponse('<h3>Main page</h3>')
+    return render(request, 'base.html')
 
 
 def catalog_view(request):
-    if request.GET:
-        params = request.GET
-        id_ = params.get('movi_id')
-        print(id_)
-    return HttpResponse('<h3>Main page</h3>actions</p>TV shows</p>')
+    movies = Movie.objects.all()
+    context = {
+        "movies": movies
+    }
+    return render(request, "movies.html", context=context)
 
 
 def catalog_ditail_view(request, cat):
