@@ -23,7 +23,7 @@ from config import settings
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.index, name='home'),
-    path('catalog/<str:cat>', views.catalog_ditail_view),
+    path('catalog/<str:cat>', views.catalog_detail_view),
     path('catalog/', include('catalog.urls'))
 ]
 

@@ -22,15 +22,15 @@ def catalog_view(request):
     return render(request, "movies.html", context=context)
 
 
-def catalog_ditail_view(request, cat):
+def catalog_detail_view(request, cat):
     if cat not in CATEGORIES:
         return redirect('home', permanent=True)
     return HttpResponse(f'<h3>Main page</h3></p>{cat}</p>')
 
 
-def movi_ditail_view(request, cat, movi_id):
+def movi_detail_view(request, cat, movi_id):
     return HttpResponse(f'<h3>{cat}</h3></p>{movi_id}</p>')
 
 
 def pageNotFound(request, exception):
-    return HttpResponseNotFound('<h3>Hello world</h3>')
+    return HttpResponseNotFound('<h3>Page not found</h3>')
