@@ -1,6 +1,9 @@
 from django.shortcuts import render, HttpResponse, redirect
 from django.http import HttpResponseNotFound
 from catalog.models import Movie
+import logging
+
+logger = logging.getLogger('movie_logger')
 
 # Create your views here.
 CATEGORIES = (
@@ -11,6 +14,7 @@ CATEGORIES = (
 
 
 def index(request):
+    logger.info('Start application')
     return render(request, 'base.html')
 
 

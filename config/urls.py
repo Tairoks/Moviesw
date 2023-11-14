@@ -19,12 +19,14 @@ from django.contrib import admin
 from django.urls import path, include
 from catalog import views
 from config import settings
+from profiles import views as profile_views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.index, name='home'),
     path('catalog/<str:cat>', views.catalog_detail_view),
-    path('catalog/', include('catalog.urls'))
+    path('catalog/', include('catalog.urls')),
+    path('login/', profile_views.login_user, name='login')
 ]
 
 
