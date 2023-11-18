@@ -104,14 +104,14 @@ LOGGING = {
     'disable_existing_loggers': False,
     'formatters': {
         'standard': {
-            'format': '%(asctime)s - %(levelname)s - %(message)s',
+            'format': '%(asctime)s - %(levelname)s - %(message)s'
         }
     },
     'handlers': {
         'console': {
             'level': 'DEBUG',
             'class': 'logging.StreamHandler',
-            'formatter': 'standard',
+            'formatter': 'standard'
         },
         'file': {
             'level': 'DEBUG',
@@ -120,13 +120,13 @@ LOGGING = {
             'filename': os.path.join(BASE_DIR, 'logs', 'movies.log'),
             'maxBytes': 10 * 1024 * 1024,
             'backupCount': 50,
-            'encoding': 'UTF-8',
+            'encoding': 'UTF-8'
         }
     },
     'loggers': {
         'movie_logger': {
             'handlers': ['console', 'file'],
-            'level': 'DEBUG',
+            'level': 'DEBUG'
         }
     }
 }

@@ -32,7 +32,7 @@ def catalog_detail_view(request, cat):
     return HttpResponse(f'<h3>Main page</h3></p>{cat}</p>')
 
 
-def movi_detail_view(request, cat, movi_id):
+def movie_detail_view(request, cat, movi_id):
     return HttpResponse(f'<h3>{cat}</h3></p>{movi_id}</p>')
 
 
