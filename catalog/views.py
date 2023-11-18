@@ -1,5 +1,5 @@
 from django.shortcuts import render, HttpResponse, redirect
-from django.http import HttpResponseNotFound
+from django.http import HttpResponseNotFound, HttpResponseRedirect
 from catalog.models import Movie
 import logging
 
@@ -38,3 +38,13 @@ def movie_detail_view(request, cat, movi_id):
 
 def pageNotFound(request, exception):
     return HttpResponseNotFound('<h3>Page not found</h3>')
+
+
+def favourite_add(request, movie_id):
+    movie = Movie.objects.get(id=movie_id)
+    profile = request.user.profile_user
+    if profile.favourites.filter(id=movie_id).exists():
+        profile.favourites.remove(movie)
+    else:
+        profile.favourites.add(movie)
+    return HttpResponseRedirect(request.META['HTTP_REFERER'])

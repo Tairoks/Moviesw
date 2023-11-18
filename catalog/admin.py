@@ -2,8 +2,6 @@ from django.contrib import admin
 from django.utils.safestring import mark_safe
 from.models import Category, Genre, Screenshot, Movie, Director, Actor
 
-# Register your models here.
-
 
 @admin.register(Category)
 class CategoryAdmin(admin.ModelAdmin):

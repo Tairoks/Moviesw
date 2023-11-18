@@ -4,6 +4,7 @@ import logging
 from django.contrib import messages
 from .decorators import unauthenticated_user
 from .forms import CreateUserForm
+from django.contrib.auth.models import User
 
 
 logger = logging.getLogger('movie_logger')
@@ -31,8 +32,15 @@ def register_user(request):
     if request.method == "POST":
         form = CreateUserForm(request.POST)
         if form.is_valid():
-            form.save()
             username = form.cleaned_data['username']
+            try:
+                if User.objects.filter(username=username).exists():
+                    messages.info(request, f"Yhe user with username {username} has been exists")
+                else:
+                    messages.info(request, f"Yhe user with username {username} has been registered")
+            except User.DoesNotExist as error:
+                logger.error(error)
+            form.save()
             messages.info(request, f'The user {username} has been registered')
             return redirect('login')
     context = {
