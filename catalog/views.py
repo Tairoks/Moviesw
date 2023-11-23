@@ -1,21 +1,16 @@
-from django.shortcuts import render, HttpResponse, redirect
-from django.http import HttpResponseNotFound, HttpResponseRedirect
-from catalog.models import Movie
 import logging
+
+from django.http import HttpResponseNotFound, HttpResponseRedirect
+from django.shortcuts import render, get_object_or_404
+from catalog.models import Movie
+
 
 logger = logging.getLogger('movie_logger')
 
-# Create your views here.
-CATEGORIES = (
-    'action',
-    'camedy',
-    'tv_shows',
-)
-
 
 def index(request):
-    logger.info('Start application')
-    return render(request, 'base.html')
+    logger.info("Start application")
+    return render(request, "base.html")
 
 
 def catalog_view(request):
@@ -26,18 +21,16 @@ def catalog_view(request):
     return render(request, "movies.html", context=context)
 
 
-def catalog_detail_view(request, cat):
-    if cat not in CATEGORIES:
-        return redirect('home', permanent=True)
-    return HttpResponse(f'<h3>Main page</h3></p>{cat}</p>')
-
-
-def movie_detail_view(request, cat, movi_id):
-    return HttpResponse(f'<h3>{cat}</h3></p>{movi_id}</p>')
-
-
-def pageNotFound(request, exception):
-    return HttpResponseNotFound('<h3>Page not found</h3>')
+def movie_detail_view(request, movie_slug):
+    movie = Movie.objects.prefetch_related().get(slug=movie_slug)
+    genres = movie.genre.all()
+    actors = movie.actors.all()
+    context = {
+        "movie": movie,
+        "genres": genres,
+        "actors": actors
+    }
+    return render(request, 'movie.html', context=context)
 
 
 def favourite_add(request, movie_id):
@@ -48,3 +41,7 @@ def favourite_add(request, movie_id):
     else:
         profile.favourites.add(movie)
     return HttpResponseRedirect(request.META['HTTP_REFERER'])
+
+
+def pageNotFound(request, exception):
+    return HttpResponseNotFound("<h3>Page not found</h3>")
