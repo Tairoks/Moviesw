@@ -17,10 +17,7 @@ class Profile(models.Model):
     updated_at = models.DateTimeField(verbose_name='Updated at', auto_now=True)
 
     def __str__(self):
-        return f'{self.pk} - {self.nickname}'
-
-    def get_user(self):
-        return self.user_set.all()
+        return f'{self.pk} - {self.user.username}'
 
     class Meta:
         verbose_name = 'Profile'

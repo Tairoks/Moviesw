@@ -56,7 +56,7 @@ class Movie(models.Model):
     year = models.PositiveSmallIntegerField(verbose_name='Year of production')
     poster = models.ImageField("Poster", default="default.png", upload_to='movies/')
     actors = models.ManyToManyField(Actor, related_name="movie_actor")
-    budget = models.PositiveIntegerField(verbose_name='Budget', default=0, help_text="million on US dollars")
+    budget = models.FloatField(verbose_name='Budget', default=0.0, help_text="million on US dollars")
     genre = models.ManyToManyField(Genre, verbose_name='Genres')
     slug = models.SlugField(unique=True)
 

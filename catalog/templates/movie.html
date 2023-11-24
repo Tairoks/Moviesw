@@ -34,14 +34,11 @@
                             <tbody>
                                 <tr>
                                     <td width="390">Actors</td>
-                                    <div class="container">
-                                        <td>
-                                            {% for actor in actors %}
-                                                <h7>{{actor.first_name}} {{actor.last_name}}</h7>
-                                            <div></div>
-                                            {% endfor %}
-                                        </td>>
-                                    </div>
+                                    <td>
+                                        {% for actor in actors %}
+                                            <li>{{actor.first_name}} {{actor.last_name}}</li>
+                                        {% endfor %}
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td>Year of production</td>
