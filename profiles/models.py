@@ -11,7 +11,7 @@ class Profile(models.Model):
     email = models.EmailField(verbose_name='Mail', null=True, blank=True)
     avatar = models.ImageField("avatar", default='default.png', upload_to='avatars/')
     favourites = models.ManyToManyField(Movie, blank=True, default=None, related_name='favourite_movie')
-    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='user_profile')
+    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='profile_user')
 
     created_at = models.DateTimeField(verbose_name='Created at', auto_now_add=True)
     updated_at = models.DateTimeField(verbose_name='Updated at', auto_now=True)
