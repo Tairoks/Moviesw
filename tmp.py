@@ -52,17 +52,17 @@
 #         print(self.current_time)
 
 
-class UserTest(unittest.TestCase):
-
-    def test_example_3(self):
-        self.assertEqual(20, 20)
-        self.assertAlmostEqual(0.011, 0.01, 2, "Ok")
-        self.assertGreater(20, 10)
-        self.assertGreaterEqual(20, 20)
-        self.assertIsInstance(10, int)
-
-        # with self.assertRaises(AssertionError):
-        #     raise AssertionError
-
-        self.assertRegex("test test", r'^test')
+# class UserTest(unittest.TestCase):
+#
+#     def test_example_3(self):
+#         self.assertEqual(20, 20)
+#         self.assertAlmostEqual(0.011, 0.01, 2, "Ok")
+#         self.assertGreater(20, 10)
+#         self.assertGreaterEqual(20, 20)
+#         self.assertIsInstance(10, int)
+#
+#         # with self.assertRaises(AssertionError):
+#         #     raise AssertionError
+#
+#         self.assertRegex("test test", r'^test')
 
